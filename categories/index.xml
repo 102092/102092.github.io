@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Categories on ExampleSite</title>
+    <title>Categories on 나뭇가지</title>
     <link>https://102092.github.io/categories/</link>
-    <description>Recent content in Categories on ExampleSite</description>
+    <description>Recent content in Categories on 나뭇가지</description>
     <image>
-      <url>https://102092.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://102092.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>https://avatars.githubusercontent.com/u/71244638?v=4</url>
+      <link>https://avatars.githubusercontent.com/u/71244638?v=4</link>
     </image>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://102092.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
