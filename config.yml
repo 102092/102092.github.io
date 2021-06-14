@@ -1,5 +1,5 @@
 baseURL: "https://102092.github.io"
-title: ExampleSite
+title: 나뭇가지
 paginate: 5
 theme: PaperMod
 
@@ -9,8 +9,6 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 enableEmoji: true
-
-# googleAnalytics: UA-123-45
 
 minify:
     disableXML: true
@@ -43,12 +41,12 @@ outputs:
 
 params:
     env: production # to enable google analytics, opengraph, twitter-cards and schema.
-    title: ExampleSite
-    description: "ExampleSite description"
+    title: 나뭇가지
+    description: "다시 볼 것을 정리하자"
     keywords: [Blog, Portfolio, PaperMod]
-    author: Me
+    author: Han
     # author: ["Me", "You"] # multiple authors
-    images: ["<link or path of image for opengraph, twitter-cards>"]
+    images: ["https://avatars.githubusercontent.com/u/71244638?v=4"]
     DateFormat: "January 2, 2006"
     defaultTheme: auto # dark, light
     disableThemeToggle: false
@@ -59,7 +57,7 @@ params:
     ShowBreadCrumbs: true
     disableSpecial1stPost: false
     disableScrollToTop: false
-    comments: false
+    comments: true
     hidemeta: false
     hideSummary: false
     showtoc: false
@@ -82,7 +80,7 @@ params:
     # profile-mode
     profileMode:
         enabled: false # needs to be explicitly set
-        title: ExampleSite
+        title: 나뭇가지
         subtitle: "This is subtitle"
         imageUrl: "<img location>"
         imageWidth: 120
@@ -100,12 +98,12 @@ params:
         Content: Welcome to my blog
 
     socialIcons:
-        - name: twitter
-          url: "https://twitter.com/"
-        - name: stackoverflow
-          url: "https://stackoverflow.com"
+        # - name: twitter
+        #   url: "https://twitter.com/"
+        # - name: stackoverflow
+        #   url: "https://stackoverflow.com"
         - name: github
-          url: "https://github.com/"
+          url: "https://github.com/102092"
 
     analytics:
         google:
@@ -121,7 +119,7 @@ params:
         hiddenInSingle: true # hide on single page
 
     editPost:
-        URL: "https://github.com/<path_to_repo>/content"
+        URL: "https://github.com/102092/102092.github.io/blob/dev/content"
         Text: "Suggest Changes" # edit text
         appendFilePath: true # to append file path to Edit link
 
