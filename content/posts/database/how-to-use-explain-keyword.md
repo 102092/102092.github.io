@@ -3,7 +3,7 @@ author: Han
 title: Explain 사용에 대한 이해
 date: 2021-06-16
 description: A brief guide to how to use explain
-tags: ["mysql"]
+tags: ['mysql']
 ShowToc: true
 ---
 
