@@ -9,32 +9,23 @@
       <link>https://avatars.githubusercontent.com/u/71244638?v=4</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 10 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://102092.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://102092.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Rich Content</title>
-      <link>https://102092.github.io/posts/rich-content/</link>
-      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      <title>기억해야할 Git 명령어</title>
+      <link>https://102092.github.io/posts/git/git-command/</link>
+      <pubDate>Sun, 20 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://102092.github.io/posts/rich-content/</guid>
-      <description>A brief description of Hugo Shortcodes</description>
+      <guid>https://102092.github.io/posts/git/git-command/</guid>
+      <description>Git command for you..</description>
     </item>
     
     <item>
-      <title>Placeholder Text</title>
-      <link>https://102092.github.io/posts/placeholder-text/</link>
-      <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
+      <title>Explain 사용에 대한 이해</title>
+      <link>https://102092.github.io/posts/database/how-to-use-explain-keyword/</link>
+      <pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://102092.github.io/posts/placeholder-text/</guid>
-      <description>Lorem Ipsum Dolor Si Amet</description>
-    </item>
-    
-    <item>
-      <title>Math Typesetting</title>
-      <link>https://102092.github.io/posts/math-typesetting/</link>
-      <pubDate>Fri, 08 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://102092.github.io/posts/math-typesetting/</guid>
-      <description>A brief guide to setup KaTeX</description>
+      <guid>https://102092.github.io/posts/database/how-to-use-explain-keyword/</guid>
+      <description>A brief guide to how to use explain</description>
     </item>
     
   </channel>
