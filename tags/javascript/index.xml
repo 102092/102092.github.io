@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>javascript on 나뭇가지</title>
+    <link>https://102092.github.io/tags/javascript/</link>
+    <description>Recent content in javascript on 나뭇가지</description>
+    <image>
+      <url>https://avatars.githubusercontent.com/u/71244638?v=4</url>
+      <link>https://avatars.githubusercontent.com/u/71244638?v=4</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 09 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://102092.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Double exclamation</title>
+      <link>https://102092.github.io/posts/javascript/double-exclamation/</link>
+      <pubDate>Fri, 09 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://102092.github.io/posts/javascript/double-exclamation/</guid>
+      <description>what is the double exclamation of javascript</description>
+    </item>
+    
+  </channel>
+</rss>
