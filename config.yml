@@ -23,9 +23,9 @@ languages:
                 - name: Archive
                   url: archives
                   weight: 5
-                - name: Categories
-                  url: categories/
-                  weight: 10
+                # - name: Categories
+                #   url: categories/
+                #   weight: 10
                 - name: Tags
                   url: tags/
                   weight: 10
@@ -63,17 +63,17 @@ params:
     showtoc: true
     tocopen: false
 
-    assets:
+    # assets:
         # disableHLJS: true # to disable highlight.js
         # disableFingerprinting: true
-        favicon: "<link / abs url>"
-        favicon16x16: "<link / abs url>"
-        favicon32x32: "<link / abs url>"
-        apple_touch_icon: "<link / abs url>"
-        safari_pinned_tab: "<link / abs url>"
+        # favicon: favicon.ico
+        # favicon16x16: "<link / abs url>"
+        # favicon32x32: "<link / abs url>"
+        # apple_touch_icon: "<link / abs url>"
+        # safari_pinned_tab: "<link / abs url>"
 
-    label:
-        text: "나뭇가지"
+    # label:
+        # text: "나뭇가지"
         # icon: /apple-touch-icon.png
         # iconHeight: 35
 
