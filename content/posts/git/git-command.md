@@ -1,6 +1,6 @@
 ---
 author: Han
-title: 기억해야할 Git 명령어
+title: Git command
 date: 2021-06-20
 description: Git command for you..
 tags: ['git', 'command']
