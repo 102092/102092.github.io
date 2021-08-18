@@ -1,0 +1,195 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>Failed to read auto-increment value from storage engine | 나뭇가지</title>
+<meta name=keywords content="bug,mysql">
+<meta name=description content="How to resolve 'Failed to read auto-increment value from storage engine'">
+<meta name=author content="Han">
+<link rel=canonical href=https://102092.github.io/posts/bug/fail-to-read-auto-increment-value/>
+<meta name=google-site-verification content="G-M00DV5S2CX">
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.6cba0d81b5f3f42bb578d49f402ba4175aa72b43def148780b8ad714c957c6f5.css integrity="sha256-bLoNgbXz9Cu1eNSfQCukF1qnK0Pe8Uh4C4rXFMlXxvU=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://102092.github.io/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://102092.github.io/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://102092.github.io/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://102092.github.io/apple-touch-icon.png>
+<link rel=mask-icon href=https://102092.github.io/safari-pinned-tab.svg>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<meta name=generator content="Hugo 0.87.0">
+<meta property="og:title" content="Failed to read auto-increment value from storage engine">
+<meta property="og:description" content="How to resolve 'Failed to read auto-increment value from storage engine'">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://102092.github.io/posts/bug/fail-to-read-auto-increment-value/"><meta property="og:image" content="https://avatars.githubusercontent.com/u/71244638?v=4"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-08-18T00:00:00+00:00">
+<meta property="article:modified_time" content="2021-08-18T00:00:00+00:00"><meta property="og:site_name" content="나뭇가지">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://avatars.githubusercontent.com/u/71244638?v=4">
+<meta name=twitter:title content="Failed to read auto-increment value from storage engine">
+<meta name=twitter:description content="How to resolve 'Failed to read auto-increment value from storage engine'">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://102092.github.io/posts/"},{"@type":"ListItem","position":3,"name":"Failed to read auto-increment value from storage engine","item":"https://102092.github.io/posts/bug/fail-to-read-auto-increment-value/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Failed to read auto-increment value from storage engine","name":"Failed to read auto-increment value from storage engine","description":"How to resolve 'Failed to read auto-increment value from storage engine'","keywords":["bug","mysql"],"articleBody":"어떤 버그일까?  어떤 버그 인가? 내용만 보면, storage engine 에서 auto-increment value를 읽는 데 실패했다는 오류. 아마도 해당 값이 잘못된 값을 읽어오려고 해서 발생하는 버그이지 않을까 싶음.  검색  Failed to read auto-increment value from storage engine 해결 방법 이 바로 나옴. 현재 테이블의 auto-increment 상태값이 잘못 설정되어 있어서, 오류가 발생하는 것.  즉 현재 row 갯수 + 1 이 아닌, 다른 값(0..) 이 들어가 있는 현상이 발생하기도 하는듯.   테이블 상태값 확인 show table status like '테이블명'  강제로 최신 id값을 가진 row를 추가를 통해, 테이블 상태값 변경 insert into table (pk필드) values (최신 PK +1)  그렇지만 현재 상황하고는 안 맞는듯 하다.  왜? 테이블 상태값을 확인했을 때, 잘못된 값이 설정되어 있는 것 처럼 보이지 않는다.   그것보다, 해당 id 값이 42..억이 넘는다  아마도 테이블에 id 타입이 int로 선언되어 있고, 최대치에 도달했기 때문에 발생하지 않을까?    INT vs BIGINT  위 이미지에서도 볼 수 있듯이, unsigned int 데이터 타입의 최대 value는 약 43억. auto-increment 에 저장되는 값이, 이 한계치를 초과했기 때문에 발생한 문제로 여겨진다. 참고  해결 방법 1. 문제 발생하는 테이블(A)을 카피하여 새로운 테이블(B) 생성 2. 새로운 테이블(B)의 id column 타입 변경 3. 새로운 테이블(B)의 이름을 (A) 로 변경 4. A 테이블 드랍  이 방법이 production 환경에서, 할 수 있는 최선이지 않을까.. mysql int to bigint로 더 검색해보자 참고  정리하며..  MySQL에서 DB스키마 작성시 주의할 점들 테이블을 만들기 전에, 이 포스팅을 한번 참조해보면 좋을 것 같음.   ID값은 BIGINT를 추천한다. 나중에 서비스가 커져 INT를 BIGINT로 바꾸는 경우도 생각보다 만만치 않다. 고려할 점이 생긴다. 마음 편히 BIGINT로 ID를 지정하여 추후에 있을지도 모를 업무를 줄여야 한다.\n  특히 테이터 삽입이 잦은 테이블이라면, 미리 id의 데이터 타입을 BIGINT로 잡고 가는 것도 나쁘지는 않을 것 같다는 생각이 듬.  ","wordCount":"264","inLanguage":"en","datePublished":"2021-08-18T00:00:00Z","dateModified":"2021-08-18T00:00:00Z","author":{"@type":"Person","name":"Han"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://102092.github.io/posts/bug/fail-to-read-auto-increment-value/"},"publisher":{"@type":"Organization","name":"나뭇가지","logo":{"@type":"ImageObject","url":"https://102092.github.io/favicon.ico"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<noscript>
+<style type=text/css>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:#1d1e20;--entry:#2e2e33;--primary:rgba(255, 255, 255, 0.84);--secondary:rgba(255, 255, 255, 0.56);--tertiary:rgba(255, 255, 255, 0.16);--content:rgba(255, 255, 255, 0.74);--hljs-bg:#2e2e33;--code-bg:#37383e;--border:#333}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://102092.github.io accesskey=h title="나뭇가지 (Alt + H)">나뭇가지</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://102092.github.io/archives title=Archive>
+<span>Archive</span>
+</a>
+</li>
+<li>
+<a href=https://102092.github.io/tags/ title=Tags>
+<span>Tags</span>
+</a>
+</li>
+<li>
+<a href=https://102092.github.io/search/ title="Search (Alt + /)" accesskey=/>
+<span>Search</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<div class=breadcrumbs><a href=https://102092.github.io>Home</a>&nbsp;»&nbsp;<a href=https://102092.github.io/posts/>Posts</a></div>
+<h1 class=post-title>
+Failed to read auto-increment value from storage engine
+</h1>
+<div class=post-description>
+How to resolve 'Failed to read auto-increment value from storage engine'
+</div>
+<div class=post-meta>August 18, 2021&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Han&nbsp;|&nbsp;<a href=https://github.com/102092/102092.github.io/blob/dev/content/posts/bug/fail-to-read-auto-increment-value.md rel="noopener noreferrer" target=_blank>Suggest Changes</a>
+</div>
+</header> <div class=toc>
+<details>
+<summary accesskey=c title="(Alt + C)">
+<div class=details>Table of Contents</div>
+</summary>
+<div class=inner><ul>
+<li>
+<a href=#%ec%96%b4%eb%96%a4-%eb%b2%84%ea%b7%b8%ec%9d%bc%ea%b9%8c aria-label="어떤 버그일까?">어떤 버그일까?</a></li>
+<li>
+<a href=#%ea%b2%80%ec%83%89 aria-label=검색>검색</a></li>
+<li>
+<a href=#int-vs-bigint aria-label="INT vs BIGINT">INT vs BIGINT</a></li>
+<li>
+<a href=#%ed%95%b4%ea%b2%b0-%eb%b0%a9%eb%b2%95 aria-label="해결 방법">해결 방법</a></li>
+<li>
+<a href=#%ec%a0%95%eb%a6%ac%ed%95%98%eb%a9%b0 aria-label=정리하며..>정리하며..</a>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<div class=post-content><h1 id=어떤-버그일까>어떤 버그일까?<a hidden class=anchor aria-hidden=true href=#어떤-버그일까>#</a></h1>
+<ul>
+<li>어떤 버그 인가?</li>
+<li>내용만 보면, <code>storage engine</code> 에서 <code>auto-increment</code> value를 읽는 데 실패했다는 오류.</li>
+<li>아마도 해당 값이 잘못된 값을 읽어오려고 해서 발생하는 버그이지 않을까 싶음.</li>
+</ul>
+<h1 id=검색>검색<a hidden class=anchor aria-hidden=true href=#검색>#</a></h1>
+<ul>
+<li><a href=https://jojoldu.tistory.com/417>Failed to read auto-increment value from storage engine 해결 방법</a> 이 바로 나옴.</li>
+<li>현재 테이블의 <code>auto-increment</code> 상태값이 잘못 설정되어 있어서, 오류가 발생하는 것.
+<ul>
+<li>즉 현재 row 갯수 + 1 이 아닌, 다른 값(0..) 이 들어가 있는 현상이 발생하기도 하는듯.</li>
+</ul>
+</li>
+<li>테이블 상태값 확인
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-mysql data-lang=mysql><span style=color:#66d9ef>show</span> <span style=color:#66d9ef>table</span> status <span style=color:#66d9ef>like</span> <span style=color:#e6db74>&#39;테이블명&#39;</span>
+</code></pre></div></li>
+<li>강제로 최신 id값을 가진 row를 추가를 통해, 테이블 상태값 변경
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-mysql data-lang=mysql><span style=color:#66d9ef>insert</span> <span style=color:#66d9ef>into</span> <span style=color:#66d9ef>table</span> (pk필드) <span style=color:#66d9ef>values</span> (<span style=color:#960050;background-color:#1e0010>최신</span> PK <span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)
+</code></pre></div></li>
+<li>그렇지만 현재 상황하고는 안 맞는듯 하다.
+<ul>
+<li>왜?</li>
+<li>테이블 상태값을 확인했을 때, 잘못된 값이 설정되어 있는 것 처럼 보이지 않는다.</li>
+</ul>
+</li>
+<li>그것보다, 해당 <code>id</code> 값이 42..억이 넘는다
+<ul>
+<li>아마도 테이블에 id 타입이 <code>int</code>로 선언되어 있고, 최대치에 도달했기 때문에 발생하지 않을까?</li>
+</ul>
+</li>
+</ul>
+<h1 id=int-vs-bigint>INT vs BIGINT<a hidden class=anchor aria-hidden=true href=#int-vs-bigint>#</a></h1>
+<p><img loading=lazy src=https://user-images.githubusercontent.com/22140570/129900275-7f13192d-433e-4ca3-a899-34055acf6a4a.png alt=image>
+</p>
+<ul>
+<li>위 이미지에서도 볼 수 있듯이, unsigned int 데이터 타입의 최대 value는 약 43억.</li>
+<li><code>auto-increment</code> 에 저장되는 값이, 이 한계치를 초과했기 때문에 발생한 문제로 여겨진다.</li>
+<li><a href=https://dev.mysql.com/doc/refman/8.0/en/integer-types.html>참고</a></li>
+</ul>
+<h1 id=해결-방법>해결 방법<a hidden class=anchor aria-hidden=true href=#해결-방법>#</a></h1>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-txt data-lang=txt>1. 문제 발생하는 테이블(A)을 카피하여 새로운 테이블(B) 생성 
+2. 새로운 테이블(B)의 id column 타입 변경
+3. 새로운 테이블(B)의 이름을 (A) 로 변경
+4. A 테이블 드랍
+</code></pre></div><ul>
+<li>이 방법이 production 환경에서, 할 수 있는 최선이지 않을까..</li>
+<li>mysql int to bigint로 더 검색해보자</li>
+<li><a href=https://dba.stackexchange.com/questions/95740/alter-primary-key-column-from-int-to-bigint-in-production-mysql-5-6-19a>참고</a></li>
+</ul>
+<h1 id=정리하며>정리하며..<a hidden class=anchor aria-hidden=true href=#정리하며>#</a></h1>
+<ul>
+<li><a href=https://novemberde.github.io/database/2019/06/10/MySQL-Desgin-cheatsheet.html>MySQL에서 DB스키마 작성시 주의할 점들</a></li>
+<li>테이블을 만들기 전에, 이 포스팅을 한번 참조해보면 좋을 것 같음.</li>
+</ul>
+<blockquote>
+<p>ID값은 BIGINT를 추천한다. 나중에 서비스가 커져 INT를 BIGINT로 바꾸는 경우도 생각보다 만만치 않다. 고려할 점이 생긴다. 마음 편히 BIGINT로 ID를 지정하여 추후에 있을지도 모를 업무를 줄여야 한다.</p>
+</blockquote>
+<ul>
+<li>특히 테이터 삽입이 잦은 테이블이라면, 미리 id의 데이터 타입을 BIGINT로 잡고 가는 것도 나쁘지는 않을 것 같다는 생각이 듬.</li>
+</ul>
+</div>
+<footer class=post-footer>
+<ul class=post-tags>
+<li><a href=https://102092.github.io/tags/bug/>bug</a></li>
+<li><a href=https://102092.github.io/tags/mysql/>mysql</a></li>
+</ul>
+<nav class=paginav>
+<a class=next href=https://102092.github.io/posts/javascript/double-exclamation/>
+<span class=title>Next Page »</span>
+<br>
+<span>Double exclamation</span>
+</a>
+</nav>
+</footer><script src=https://utteranc.es/client.js repo=102092/comments issue-term=title theme=github-light crossorigin=anonymous async></script>
+</article>
+</main>
+<footer class=footer>
+<span>&copy; 2021 <a href=https://102092.github.io>나뭇가지</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)">
+<button class=top-link id=top-link type=button accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</button>
+</a>
+<script>let menu=document.getElementById('menu');menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+</body>
+</html>

@@ -9,7 +9,16 @@
       <link>https://avatars.githubusercontent.com/u/71244638?v=4</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 09 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://102092.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://102092.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Failed to read auto-increment value from storage engine</title>
+      <link>https://102092.github.io/posts/bug/fail-to-read-auto-increment-value/</link>
+      <pubDate>Wed, 18 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://102092.github.io/posts/bug/fail-to-read-auto-increment-value/</guid>
+      <description>How to resolve &amp;#39;Failed to read auto-increment value from storage engine&amp;#39;</description>
+    </item>
+    
     <item>
       <title>Double exclamation</title>
       <link>https://102092.github.io/posts/javascript/double-exclamation/</link>
@@ -20,7 +29,7 @@
     </item>
     
     <item>
-      <title>기억해야할 Git 명령어</title>
+      <title>Git command</title>
       <link>https://102092.github.io/posts/git/git-command/</link>
       <pubDate>Sun, 20 Jun 2021 00:00:00 +0000</pubDate>
       
@@ -29,7 +38,7 @@
     </item>
     
     <item>
-      <title>Explain 사용에 대한 이해</title>
+      <title>How to use EXPLAIN in mysql</title>
       <link>https://102092.github.io/posts/database/how-to-use-explain-keyword/</link>
       <pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate>
       

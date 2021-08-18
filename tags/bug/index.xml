@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>mysql on 나뭇가지</title>
-    <link>https://102092.github.io/tags/mysql/</link>
-    <description>Recent content in mysql on 나뭇가지</description>
+    <title>bug on 나뭇가지</title>
+    <link>https://102092.github.io/tags/bug/</link>
+    <description>Recent content in bug on 나뭇가지</description>
     <image>
       <url>https://avatars.githubusercontent.com/u/71244638?v=4</url>
       <link>https://avatars.githubusercontent.com/u/71244638?v=4</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 18 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://102092.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://102092.github.io/tags/bug/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Failed to read auto-increment value from storage engine</title>
       <link>https://102092.github.io/posts/bug/fail-to-read-auto-increment-value/</link>
@@ -17,15 +17,6 @@
       
       <guid>https://102092.github.io/posts/bug/fail-to-read-auto-increment-value/</guid>
       <description>How to resolve &amp;#39;Failed to read auto-increment value from storage engine&amp;#39;</description>
-    </item>
-    
-    <item>
-      <title>How to use EXPLAIN in mysql</title>
-      <link>https://102092.github.io/posts/database/how-to-use-explain-keyword/</link>
-      <pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://102092.github.io/posts/database/how-to-use-explain-keyword/</guid>
-      <description>A brief guide to how to use explain</description>
     </item>
     
   </channel>
