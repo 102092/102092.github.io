@@ -16,7 +16,7 @@
       <pubDate>Wed, 18 Aug 2021 00:00:00 +0000</pubDate>
       
       <guid>https://102092.github.io/posts/bug/fail-to-read-auto-increment-value/</guid>
-      <description>How to resolve &amp;#39;Failed to read auto-increment value from storage engine&amp;#39;</description>
+      <description>1. 버그 내용  내용만 보면, storage engine 에서 auto-increment value를 읽는 데 실패했다는 오류. 아마도 해당 값이 잘못된 값을 읽어오려고 해서 발생하는 버그이지 않을까 싶음.  2. 검색  Failed to read auto-increment value from storage engine 해결 방법 이 바로 나옴. 현재 테이블의 auto-increment 상태값이 잘못 설정되어 있어서, 오류가 발생하는 것.  즉 현재 row 갯수 + 1 이 아닌, 다른 값(0..) 이 들어가 있는 현상이 발생하기도 하는듯.   테이블 상태값 확인 show table status like &amp;#39;테이블명&amp;#39;  강제로 최신 id값을 가진 row를 추가를 통해, 테이블 상태값 변경 insert into table (pk필드) values (최신 PK +1)  그렇지만 현재 상황하고는 안 맞는듯 하다.</description>
     </item>
     
     <item>

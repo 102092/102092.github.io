@@ -9,14 +9,24 @@
       <link>https://avatars.githubusercontent.com/u/71244638?v=4</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 18 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://102092.github.io/tags/bug/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 03 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://102092.github.io/tags/bug/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AWS EC2 instance issue</title>
+      <link>https://102092.github.io/posts/bug/aws-ec2-instance-issue/</link>
+      <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://102092.github.io/posts/bug/aws-ec2-instance-issue/</guid>
+      <description>1. 버그 내용  특정 시간만 되면 혹은 간헐적이나 지속적으로, Redis 운영에 장애가 생김. (약 10분 ~ 20분) Error Log -&amp;gt; ... Redis command timed out;  로그 내용으로 보아, 어떠한 이유에서 인 지 레디스 멈췄고, 다른 작업들을 처리하지 못해서 생기는 이슈 같음.    2. 생각해볼 수 있는 원인   특정 작업을 처리하는 데, 시간이 오래 걸려서, 레디스에서 병목이 생기는거 아닐까?
+ slow log 찾아볼 것 SLOWLOG subcommand    특정 시간에 너무 많은 키가 expire 되어서 발생한 문제가 아닐까?</description>
+    </item>
+    
     <item>
       <title>Failed to read auto-increment value from storage engine</title>
       <link>https://102092.github.io/posts/bug/fail-to-read-auto-increment-value/</link>
       <pubDate>Wed, 18 Aug 2021 00:00:00 +0000</pubDate>
       
       <guid>https://102092.github.io/posts/bug/fail-to-read-auto-increment-value/</guid>
-      <description>How to resolve &amp;#39;Failed to read auto-increment value from storage engine&amp;#39;</description>
+      <description>1. 버그 내용  내용만 보면, storage engine 에서 auto-increment value를 읽는 데 실패했다는 오류. 아마도 해당 값이 잘못된 값을 읽어오려고 해서 발생하는 버그이지 않을까 싶음.  2. 검색  Failed to read auto-increment value from storage engine 해결 방법 이 바로 나옴. 현재 테이블의 auto-increment 상태값이 잘못 설정되어 있어서, 오류가 발생하는 것.  즉 현재 row 갯수 + 1 이 아닌, 다른 값(0..) 이 들어가 있는 현상이 발생하기도 하는듯.   테이블 상태값 확인 show table status like &amp;#39;테이블명&amp;#39;  강제로 최신 id값을 가진 row를 추가를 통해, 테이블 상태값 변경 insert into table (pk필드) values (최신 PK +1)  그렇지만 현재 상황하고는 안 맞는듯 하다.</description>
     </item>
     
   </channel>
