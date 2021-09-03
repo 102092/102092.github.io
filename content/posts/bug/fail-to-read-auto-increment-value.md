@@ -2,13 +2,11 @@
 author: Han
 title: Failed to read auto-increment value from storage engine
 date: 2021-08-18
-description: How to resolve 'Failed to read auto-increment value from storage engine'
 tags: ['bug', 'mysql']
-ShowToc: true
+ShowToc: false
 ---
 
-# 어떤 버그일까?
-- 어떤 버그 인가?
+# 버그 내용
 - 내용만 보면, `storage engine` 에서 `auto-increment` value를 읽는 데 실패했다는 오류.
 - 아마도 해당 값이 잘못된 값을 읽어오려고 해서 발생하는 버그이지 않을까 싶음.
 
@@ -31,7 +29,7 @@ ShowToc: true
     - 아마도 테이블에 id 타입이 `int`로 선언되어 있고, 최대치에 도달했기 때문에 발생하지 않을까?
 
 
-# INT vs BIGINT
+## INT vs BIGINT
 ![image](https://user-images.githubusercontent.com/22140570/129900275-7f13192d-433e-4ca3-a899-34055acf6a4a.png)
 - 위 이미지에서도 볼 수 있듯이, unsigned int 데이터 타입의 최대 value는 약 43억.
 - `auto-increment` 에 저장되는 값이, 이 한계치를 초과했기 때문에 발생한 문제로 여겨진다.
@@ -49,7 +47,7 @@ ShowToc: true
 - mysql int to bigint로 더 검색해보자
 - [참고](https://dba.stackexchange.com/questions/95740/alter-primary-key-column-from-int-to-bigint-in-production-mysql-5-6-19a)
 
-# 정리하며..
+# 정리
 - [MySQL에서 DB스키마 작성시 주의할 점들](https://novemberde.github.io/database/2019/06/10/MySQL-Desgin-cheatsheet.html)
 - 테이블을 만들기 전에, 이 포스팅을 한번 참조해보면 좋을 것 같음.
 
