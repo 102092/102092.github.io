@@ -10,7 +10,7 @@
 <meta name=author content="Han">
 <link rel=canonical href=https://102092.github.io/posts/bug/aws-ec2-instance-issue/>
 <meta name=google-site-verification content="G-M00DV5S2CX">
-<link crossorigin=anonymous href=/assets/css/stylesheet.min.00d5d4fc479b1575183ee8d86b4fb372ba9d9b1904e96fa8e4c40ff7debe2b94.css integrity="sha256-ANXU/EebFXUYPujYa0+zcrqdmxkE6W+o5MQP996+K5Q=" rel="preload stylesheet" as=style>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.9f1d947375927e9847272b1f4e9be81336f539e513bf04d52cade31f81cad1af.css integrity="sha256-nx2Uc3WSfphHJysfTpvoEzb1OeUTvwTVLK3jH4HK0a8=" rel="preload stylesheet" as=style>
 <script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
 <link rel=icon href=https://102092.github.io/favicon.ico>
 <link rel=icon type=image/png sizes=16x16 href=https://102092.github.io/favicon-16x16.png>
@@ -19,7 +19,7 @@
 <link rel=mask-icon href=https://102092.github.io/safari-pinned-tab.svg>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.88.0">
+<meta name=generator content="Hugo 0.88.1">
 <meta property="og:title" content="AWS EC2 instance issue">
 <meta property="og:description" content="1. 버그 내용  특정 시간만 되면 혹은 간헐적이나 지속적으로, Redis 운영에 장애가 생김. (약 10분 ~ 20분) Error Log -> ... Redis command timed out;  로그 내용으로 보아, 어떠한 이유에서 인 지 레디스 멈췄고, 다른 작업들을 처리하지 못해서 생기는 이슈 같음.    2. 생각해볼 수 있는 원인   특정 작업을 처리하는 데, 시간이 오래 걸려서, 레디스에서 병목이 생기는거 아닐까?
  slow log 찾아볼 것 SLOWLOG subcommand    특정 시간에 너무 많은 키가 expire 되어서 발생한 문제가 아닐까?">
@@ -191,6 +191,11 @@ AWS EC2 instance issue
 <li><a href=https://102092.github.io/tags/aws/>aws</a></li>
 </ul>
 <nav class=paginav>
+<a class=prev href=https://102092.github.io/posts/spring/what-is-mapped-by-annotation/>
+<span class=title>« Prev Page</span>
+<br>
+<span>Mapped By</span>
+</a>
 <a class=next href=https://102092.github.io/posts/bug/fail-to-read-auto-increment-value/>
 <span class=title>Next Page »</span>
 <br>
@@ -208,9 +213,7 @@ Powered by
         <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
 </span>
 </footer>
-<a href=#top aria-label="go to top" title="Go to Top (Alt + G)">
-<button class=top-link id=top-link type=button accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
-</button>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
 </a>
 <script>let menu=document.getElementById('menu');menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
 <script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>

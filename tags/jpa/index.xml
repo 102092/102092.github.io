@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>JPA on 나뭇가지</title>
+    <link>https://102092.github.io/tags/jpa/</link>
+    <description>Recent content in JPA on 나뭇가지</description>
+    <image>
+      <url>https://avatars.githubusercontent.com/u/71244638?v=4</url>
+      <link>https://avatars.githubusercontent.com/u/71244638?v=4</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 08 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://102092.github.io/tags/jpa/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mapped By</title>
+      <link>https://102092.github.io/posts/spring/what-is-mapped-by-annotation/</link>
+      <pubDate>Wed, 08 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://102092.github.io/posts/spring/what-is-mapped-by-annotation/</guid>
+      <description>1. 어디까지 알고 있는가?  mapped by 보통 연관관계 매핑에서 사용되며, 연관 관계에서 어느쪽이 주도권을 가지고 있는 지 나타날 떄 쓰이는 어노테이션. 어노테이션에 이 속성이 붙어있는 경우, 해당 필드는 주도권을 가지고 있지 않음.  이 속성이 없는 쪽에서, 연관 관계를 관리한다고 보면 된다. 즉 이 속성이 없는 쪽에서 생성, 업데이트를 해줘야 적용된다.    2. 내가 생각한게 맞는가?  아래와 같이 Entity 가 존재한다고 할 때..  @Entity public class Person { @Id @GeneratedValue(strategy = GenerationType.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -9,7 +9,7 @@
 <meta name=author content="Han">
 <link rel=canonical href=https://102092.github.io/posts/>
 <meta name=google-site-verification content="G-M00DV5S2CX">
-<link crossorigin=anonymous href=/assets/css/stylesheet.min.00d5d4fc479b1575183ee8d86b4fb372ba9d9b1904e96fa8e4c40ff7debe2b94.css integrity="sha256-ANXU/EebFXUYPujYa0+zcrqdmxkE6W+o5MQP996+K5Q=" rel="preload stylesheet" as=style>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.9f1d947375927e9847272b1f4e9be81336f539e513bf04d52cade31f81cad1af.css integrity="sha256-nx2Uc3WSfphHJysfTpvoEzb1OeUTvwTVLK3jH4HK0a8=" rel="preload stylesheet" as=style>
 <link rel=icon href=https://102092.github.io/favicon.ico>
 <link rel=icon type=image/png sizes=16x16 href=https://102092.github.io/favicon-16x16.png>
 <link rel=icon type=image/png sizes=32x32 href=https://102092.github.io/favicon-32x32.png>
@@ -17,7 +17,7 @@
 <link rel=mask-icon href=https://102092.github.io/safari-pinned-tab.svg>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.88.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=alternate type=application/rss+xml href=https://102092.github.io/posts/index.xml>
 <meta property="og:title" content="Posts">
 <meta property="og:description" content="다시 볼 것을 정리하자">
@@ -69,7 +69,19 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
-<h2>AWS EC2 instance issue</h2>
+<h2>Mapped By
+</h2>
+</header>
+<section class=entry-content>
+<p>1. 어디까지 알고 있는가? mapped by 보통 연관관계 매핑에서 사용되며, 연관 관계에서 어느쪽이 주도권을 가지고 있는 지 나타날 떄 쓰이는 어노테이션. 어노테이션에 이 속성이 붙어있는 경우, 해당 필드는 주도권을 가지고 있지 않음. 이 속성이 없는 쪽에서, 연관 관계를 관리한다고 보면 된다. 즉 이 속성이 없는 쪽에서 생성, 업데이트를 해줘야 적용된다. 2. 내가 생각한게 맞는가? 아래와 같이 Entity 가 존재한다고 할 때.. @Entity public class Person { @Id @GeneratedValue(strategy = GenerationType....</p>
+</section>
+<footer class=entry-footer>September 8, 2021&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Han</footer>
+<a class=entry-link aria-label="post link to Mapped By" href=https://102092.github.io/posts/spring/what-is-mapped-by-annotation/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>AWS EC2 instance issue
+</h2>
 </header>
 <section class=entry-content>
 <p>1. 버그 내용 특정 시간만 되면 혹은 간헐적이나 지속적으로, Redis 운영에 장애가 생김. (약 10분 ~ 20분) Error Log -> ... Redis command timed out; 로그 내용으로 보아, 어떠한 이유에서 인 지 레디스 멈췄고, 다른 작업들을 처리하지 못해서 생기는 이슈 같음. 2. 생각해볼 수 있는 원인 특정 작업을 처리하는 데, 시간이 오래 걸려서, 레디스에서 병목이 생기는거 아닐까?
@@ -80,7 +92,8 @@ slow log 찾아볼 것 SLOWLOG subcommand 특정 시간에 너무 많은 키가 
 </article>
 <article class=post-entry>
 <header class=entry-header>
-<h2>Failed to read auto-increment value from storage engine</h2>
+<h2>Failed to read auto-increment value from storage engine
+</h2>
 </header>
 <section class=entry-content>
 <p>1. 버그 내용 내용만 보면, storage engine 에서 auto-increment value를 읽는 데 실패했다는 오류. 아마도 해당 값이 잘못된 값을 읽어오려고 해서 발생하는 버그이지 않을까 싶음. 2. 검색 Failed to read auto-increment value from storage engine 해결 방법 이 바로 나옴. 현재 테이블의 auto-increment 상태값이 잘못 설정되어 있어서, 오류가 발생하는 것. 즉 현재 row 갯수 + 1 이 아닌, 다른 값(0..) 이 들어가 있는 현상이 발생하기도 하는듯. 테이블 상태값 확인 show table status like '테이블명' 강제로 최신 id값을 가진 row를 추가를 통해, 테이블 상태값 변경 insert into table (pk필드) values (최신 PK +1) 그렇지만 현재 상황하고는 안 맞는듯 하다....</p>
@@ -90,7 +103,8 @@ slow log 찾아볼 것 SLOWLOG subcommand 특정 시간에 너무 많은 키가 
 </article>
 <article class=post-entry>
 <header class=entry-header>
-<h2>Double exclamation</h2>
+<h2>Double exclamation
+</h2>
 </header>
 <section class=entry-content>
 <p>!! ? ! 는 많이 봤는데.. !! 는 생소하다. 전자는 기본적으로 boolean 값을 반전하는 역할을 담당함. 영어 이름은.. double exclamation 사용 목적 명시적으로 형 변환을 하기 위해 즉 다른 타입의 데이터를 boolean 타입으로 변환해서 판단하기 위해서임. 왜 사용하는가? undefined , null 값에 대한 condition check를 위해서 사용하는 것이 아닐까 생각함. 예시 var case1; // undefined console.log("case1 : " + (case1)); // undefined console....</p>
@@ -100,7 +114,8 @@ slow log 찾아볼 것 SLOWLOG subcommand 특정 시간에 너무 많은 키가 
 </article>
 <article class=post-entry>
 <header class=entry-header>
-<h2>Git command</h2>
+<h2>Git command
+</h2>
 </header>
 <section class=entry-content>
 <p>Rebase root commit git rebase -i --root 참고
@@ -113,20 +128,11 @@ git commit --amend --author="사용자명 &lt;이메일>" rebase –continue git
 <footer class=entry-footer>June 20, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Han</footer>
 <a class=entry-link aria-label="post link to Git command" href=https://102092.github.io/posts/git/git-command/></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>How to use EXPLAIN in mysql</h2>
-</header>
-<section class=entry-content>
-<p>SELECT 쿼리 실행 순서 작성하는 쿼리문의 순서와, 실제 DB에서 실행되는 순서가 다름.
-보통 Select query 문법 순서
-SELECT FROM WHERE GROUP BY ORDER BY 실제 실행 순서
-FROM Sub Query.. 있으면 임시테이블 생성됨. ON JOIN WHERE GROUP BY HAVING SELECT DISTINCT ORDER BY LIMIT, OFFSET 참고
-https://dion-ko.tistory.com/85 https://daeuungcode.tistory.com/144 MySQL Explain 기본적으로 SELECT, INSERT, DELETE, REPLACE, UPDATE 쿼리문의 실행플랜을 분석하는 데 사용하는 키워드....</p>
-</section>
-<footer class=entry-footer>June 16, 2021&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Han</footer>
-<a class=entry-link aria-label="post link to How to use EXPLAIN in mysql" href=https://102092.github.io/posts/database/how-to-use-explain-keyword/></a>
-</article>
+<footer class=page-footer>
+<nav class=pagination>
+<a class=next href=https://102092.github.io/posts/page/2/>Next Page »</a>
+</nav>
+</footer>
 </main>
 <footer class=footer>
 <span>&copy; 2021 <a href=https://102092.github.io>나뭇가지</a></span>
@@ -136,9 +142,7 @@ Powered by
         <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
 </span>
 </footer>
-<a href=#top aria-label="go to top" title="Go to Top (Alt + G)">
-<button class=top-link id=top-link type=button accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
-</button>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
 </a>
 <script>let menu=document.getElementById('menu');menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
 <script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
